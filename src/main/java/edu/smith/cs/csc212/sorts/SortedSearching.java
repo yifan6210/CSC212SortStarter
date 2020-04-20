@@ -39,8 +39,26 @@ public class SortedSearching {
 	 * @return -1 if not found or the position if found.
 	 */
 	public static int binarySearchIterative(int findMe, ListADT<Integer> dataset) {
-		throw new TODOErr();
+
+		int left = 0;
+		int right = dataset.size();
+
+		while (left < right) {
+			int middle = (left + right) / 2;
+			if (dataset.getIndex(middle) == findMe) {
+				return middle;
+			}
+			else if (dataset.getIndex(middle) < findMe) {
+				left = middle+1;
+
+			} else {
+				right = middle;
+
+			}
+		} 
+		return -1;
 	}
+
 
 	/**
 	 * Find an integer in the sorted list dataset by recursive binary search.
@@ -52,7 +70,21 @@ public class SortedSearching {
 	 * @return -1 if not found, or the index of findMe in dataset.
 	 */
 	private static int binarySearchR(int findMe, ListADT<Integer> dataset, int left, int right) {
-		throw new TODOErr();
+
+		if (left < right) {
+			int middle = (left + right) / 2;
+			if (dataset.getIndex(middle) == findMe) {
+				return middle;
+			}
+			else if (dataset.getIndex(middle) < findMe) {
+				return binarySearchR(findMe, dataset, middle+1, right);
+
+			} else {
+				return binarySearchR(findMe, dataset, left, middle);
+
+			}
+		} 
+		return -1;
 	}
 	
 	/**
